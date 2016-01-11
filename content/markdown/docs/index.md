@@ -1,5 +1,7 @@
 # Latest Documentation
 
+---
+
 * [Introduction](overview.html)
 * [Installation](installation.html)
 * [Quick Start](quick-start.html)
@@ -21,3 +23,8 @@
         * [MLP](mlp.html)
     * [RBM + Auto-encoder](rbm.html)
     * [RNN](rnn.html)
+
+---
+
+* [简介](zh/overview.html)
+* [使用指南](zh/programming-guide.html)
