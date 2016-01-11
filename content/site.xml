@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ Licensed to the Apache Software Foundation (ASF) under one
+ or more contributor license agreements.  See the NOTICE file
+ distributed with this work for additional information
+ regarding copyright ownership.  The ASF licenses this file
+ to you under the Apache License, Version 2.0 (the
+ "License"); you may not use this file except in compliance
+ with the License.  You may obtain a copy of the License at
+     http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+<project name="Apache SINGA">
+
+  <bannerLeft>
+    <name>Apache SINGA</name>
+    <src>images/singa-logo.png</src>
+    <href>index.html</href>
+    <alt>Apache SINGA</alt>
+  </bannerLeft>
+
+  <bannerRight>
+    <src>images/singa-title.png</src>
+    <alt>Apache SINGA</alt>
+  </bannerRight>
+
+  <publishDate position="none"/>
+  <version position="none"/>
+
+  <poweredBy>
+    <logo name="apache-incubator" alt="Apache Incubator" img="http://incubator.apache.org/images/egg-logo.png" href="http://incubator.apache.org"/>
+  </poweredBy>
+
+  <skin>
+    <groupId>org.apache.maven.skins</groupId>
+    <artifactId>maven-fluido-skin</artifactId>
+    <version>1.4</version>
+  </skin>
+
+  <body>
+
+    <breadcrumbs position="left">
+      <item name="Apache SINGA" href="index.html"/>
+    </breadcrumbs>
+
+    <menu name="Apache SINGA">
+      <item name="Introduction" href="docs/overview.html"/>
+      <item name="Quick Start" href="docs/quick-start.html"/>
+      <item name="Downloads" href="downloads.html" />
+    </menu>
+
+    <head>
+      <script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+      </script>
+      <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+      </script>
+      <meta name="author" content="Apache SINGA"/>
+      <meta name="keywords" content="SINGA, Deep Learning, Distributed training"/>
+    </head>
+
+    <menu name="Documentaion">
+      <item name = "Latest" href="docs/index.html" collapse="true" >
+        <item name="Installation" href="docs/installation.html" collapse="true">
+	  <item name="From source" href="docs/installation_source.html"/>
+	  <item name="Using Docker" href="docs/docker.html"/>
+	</item>
+        <item name="Programmer Guide" href="docs/programmer-guide.html" collapse="true">
+          <item name ="Model Configuration" href="docs/model-config.html"/>
+          <item name="Neural Network" href="docs/neural-net.html"/>
+          <item name="Layer" href="docs/layer.html"/>
+          <item name="Param" href="docs/param.html"/>
+          <item name="TrainOneBatch" href="docs/train-one-batch.html"/>
+          <item name="Updater" href="docs/updater.html"/>
+        </item>
+        <item name="Distributed Training" href="docs/distributed-training.html" collapse="true" >
+          <item name="System Architecture" href="docs/architecture.html"/>
+          <item name="Frameworks" href="docs/frameworks.html"/>
+          <item name="Communication" href="docs/communication.html"/>
+          <item name="Hybrid Parallelism" href="docs/hybrid.html"/>
+	        <item name="Training on Mesos" href="docs/mesos.html"/>
+          <item name="Using HDFS" href="docs/hdfs.html"/>
+        </item>
+        <item name="Data Preparation" href="docs/data.html"/>
+        <item name="Checkpoint" href="docs/checkpoint.html"/>
+        <item name="Test" href="docs/test.html"/>
+        <item name="Examples" href="docs/examples.html" collapse="true" >
+          <item name="CNN" href="docs/cnn.html"/>
+          <item name="MLP" href="docs/mlp.html"/>
+          <item name="RBM + Auto-encoder" href="docs/rbm.html"/>
+          <item name="RNN" href="docs/rnn.html"/>
+        </item>
+        <item name="Debug" href="docs/debug.html"/>
+      </item>
+      <item name = "v0.1.0" href="v0.1.0/index.html"/>
+    </menu>
+
+    <menu name="Development">
+      <item name="Schedule" href="develop/schedule.html"/>
+      <item name="How to Contribute" href="develop/how-contribute.html"  collapse="true" >
+        <item name="Code" href="develop/contribute-code.html"/>
+        <item name="Documentation" href="develop/contribute-docs.html"/>
+      </item>
+    </menu>
+
+    <menu name="Community">
+      <item name="Source Repository" href="community/source-repository.html"/>
+      <item name="Mailing Lists" href="community/mail-lists.html"/>
+      <item name="Issue Tracking" href="community/issue-tracking.html"/>
+      <item name="SINGA Team" href="community/team-list.html"/>
+    </menu>
+
+    <menu name="External Links">
+      <item name="Apache Software Foundation" href="http://www.apache.org/"/>
+      <item name="NUS Site" href="http://www.comp.nus.edu.sg/~dbsystem/singa/"/>
+    </menu>
+
+    <footer>
+      <p>Copyright &copy; 2015 The Apache Software Foundation. All rights reserved. Apache Singa, Apache, the Apache feather logo, and the Apache Singa project logos are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.</p>
+    </footer>
+
+  </body>
+
+  <custom>
+    <fluidoSkin>
+      <profile>production</profile>
+      <topBarEnabled>true</topBarEnabled>
+      <navBarStyle>navbar-inverse</navBarStyle>
+      <sideBarEnabled>true</sideBarEnabled>
+      <leftColumnClass>span2</leftColumnClass>
+      <bodyColumnClass>span10</bodyColumnClass>
+      <gitHub>
+        <projectId>apache/incubator-singa</projectId>
+        <ribbonColor>orange</ribbonColor>
+        <ribbonOrientation>right</ribbonOrientation>
+      </gitHub>
+    </fluidoSkin>
+  </custom>
+
+</project>

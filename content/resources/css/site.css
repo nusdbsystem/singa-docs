@@ -1,0 +1,18 @@
+img.centered{
+  text-align:center;
+  margin-top:0px;
+  margin-bottom:0px;
+  padding:0px;
+}
+
+#bannerLeft img{
+	width: 180px;
+}
+
+#bannerRight img{
+	width: 500px;
+}
+
+img.builtBy{
+	width: 180px;
+}
