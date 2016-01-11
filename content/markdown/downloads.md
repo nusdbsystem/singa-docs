@@ -2,6 +2,8 @@
 ---
 
 * Latest code: please clone the latest code from [Github](https://github.com/apache/incubator-singa)
+
+<!--
 * v0.2.0-RC1 (7 January 2016):
     * [Apache SINGA 0.2.0](https://dist.apache.org/repos/dist/dev/incubator/singa/0.2.0/apache-singa-incubating-0.2.0-RC1.tar.gz)
       [\[MD5\]](https://dist.apache.org/repos/dist/dev/incubator/singa/0.2.0/apache-singa-incubating-0.2.0-RC1.tar.gz.md5)
@@ -14,6 +16,7 @@
         * [Python wrapper](docs/python.html) makes it easy to configure the job, including neural net and SGD algorithm.
         * [RNN model and BPTT algorithm](docs/general-rnn.html) are implemented to support applications based on RNN models, e.g., GRU.
         * [Cloud software integration](docs/distributed-training.html) includes Mesos, Docker and HDFS.
+-->
 
 
 * v0.1.0 (8 October 2015):
