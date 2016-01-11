@@ -12,7 +12,7 @@
         * [Training on GPU](docs/gpu.html) enables training of complex models on a single node with multiple GPU cards.
         * [Hybrid neural net partitioning](docs/hybrid.html) supports data and model parallelism at the same time.
         * [Python wrapper](docs/python.html) makes it easy to configure the job, including neural net and SGD algorithm.
-        * [RNN model and BPTT algorithm](docs/rnn.html) are implemented to support applications based on RNN models, e.g., GRU.
+        * [RNN model and BPTT algorithm](docs/general-rnn.html) are implemented to support applications based on RNN models, e.g., GRU.
         * [Cloud software integration](docs/distributed-training.html) includes Mesos, Docker and HDFS.
 
 

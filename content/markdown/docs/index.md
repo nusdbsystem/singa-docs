@@ -22,9 +22,11 @@
         * [CNN](cnn.html)
         * [MLP](mlp.html)
     * [RBM + Auto-encoder](rbm.html)
-    * [RNN](rnn.html)
+    * [Vanilla RNN for language modelling](rnn.html)
+    * [Char-RNN](general-rnn.html)
 
 ---
 
 * [简介](zh/overview.html)
 * [使用指南](zh/programming-guide.html)
+
