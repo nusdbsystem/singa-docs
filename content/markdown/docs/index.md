@@ -27,6 +27,8 @@
 
 ---
 
-* [简介](zh/overview.html)
-* [使用指南](zh/programming-guide.html)
-
+* [Chinese]
+    * [简介](zh/overview.html)
+    * [使用指南](zh/programming-guide.html)
+* [Japanese](jp/index.html)
+* [Korean](kr/index.html)
