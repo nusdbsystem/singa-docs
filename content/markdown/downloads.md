@@ -16,6 +16,12 @@
         * [Python wrapper](docs/python.html) makes it easy to configure the job, including neural net and SGD algorithm.
         * [RNN model and BPTT algorithm](docs/general-rnn.html) are implemented to support applications based on RNN models, e.g., GRU.
         * [Cloud software integration](docs/distributed-training.html) includes Mesos, Docker and HDFS.
+        * Visualization of neural net structure and layer information, which is helpful for debugging.
+        * Linear algebra functions and random functions against Blobs and raw data pointers.
+        * New layers, including SoftmaxLayer, ArgSortLayer, DummyLayer, RNN layers and cuDNN layers.
+        * Update Layer class to carry multiple data/grad Blobs.
+        * Extract features and test performance for new data by loading previously trained model parameters.
+        * Add Store class for IO operations.
 -->
 
 
