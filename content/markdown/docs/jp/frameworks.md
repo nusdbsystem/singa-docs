@@ -1,13 +1,11 @@
-# Distributed Training Framework
+# 分散トレーニング フレームワーク
 
 ---
 
-## Cluster Topology Configuration
+## クラスタトポロジーの設定
 
-Here we describe how to configure SINGA's cluster topology to support
-different distributed training frameworks.
-The cluster topology is configured in the `cluster` field in `JobProto`.
-The `cluster` is of type `ClusterProto`:
+クラスタトポロジーは `JobProto` の `cluster` フィールドで設定します。
+`cluster` の type は `ClusterProto` です。
 
     message ClusterProto {
       optional int32 nworker_groups = 1;
@@ -24,32 +22,31 @@ The `cluster` is of type `ClusterProto`:
     }
 
 
-The mostly used fields are as follows:
+下記のフィールドを設定して、クラスタトポロジーをカスタマイズします。
 
-  * `nworkers_per_group` and `nworkers_per_procs`:
+  * `nworkers_per_group` と `nworkers_per_procs`
   decide the partitioning of worker side ParamShard.
-  * `nservers_per_group` and `nservers_per_procs`:
+
+  * `nservers_per_group` と `nservers_per_procs`
   decide the partitioning of server side ParamShard.
-  * `server_worker_separate`:
+
+  * `server_worker_separate`
   separate servers and workers in different processes.
 
-## Different Training Frameworks
+## トレーニング フレームワーク
 
-In SINGA, worker groups run asynchronously and
-workers within one group run synchronously.
-Users can leverage this general design to run
-both **synchronous** and **asynchronous** training frameworks.
-Here we illustrate how to configure
-popular distributed training frameworks in SINGA.
+In SINGA, worker groups run asynchronously and　workers within one group run synchronously.
+Users can leverage this general design to run　both **synchronous** and **asynchronous** training frameworks.
+Here we illustrate how to configure　popular distributed training frameworks in SINGA.
 
 <img src="../images/frameworks.png" style="width: 800px"/>
 <p><strong> Fig.1 - Training frameworks in SINGA</strong></p>
 
-###Sandblaster
+### Sandblaster
 
-This is a **synchronous** framework used by Google Brain.
-Fig.2(a) shows the Sandblaster framework implemented in SINGA.
-Its configuration is as follows:
+Google Brain で使われている **synchronous** フレームワークです。
+Fig.2(a)に、SINGA で実装された Sandblaster を示します。
+cluster フィールドの設定は次のとおりです。
 
     cluster {
         nworker_groups: 1
@@ -64,11 +61,11 @@ A worker computes on its partition of the model,
 and only communicates with servers handling related parameters.
 
 
-###AllReduce
+### AllReduce
 
-This is a **synchronous** framework used by Baidu's DeepImage.
-Fig.2(b) shows the AllReduce framework implemented in SINGA.
-Its configuration is as follows:
+Baidu's DeepImage で使われている **synchronous** フレームワークです。
+Fig.2(b)に、SINGA で実装された AllReduce を示します。
+cluster フィールドの設定は次のとおりです。
 
     cluster {
         nworker_groups: 1
@@ -82,11 +79,11 @@ We bind each worker with a server on the same node, so that each
 node is responsible for maintaining a partition of parameters and
 collecting updates from all other nodes.
 
-###Downpour
+### Downpour
 
-This is a **asynchronous** framework used by Google Brain.
-Fig.2(c) shows the Downpour framework implemented in SINGA.
-Its configuration is as follows:
+Google Brain で使われている **asynchronous** フレームワークです。
+Fig.2(c)に、SINGA で実装された Downpour を示します。
+cluster フィールドの設定は次のとおりです。
 
     cluster {
         nworker_groups: 2
@@ -103,9 +100,9 @@ from the last *update* response.
 
 ###Distributed Hogwild
 
-This is a **asynchronous** framework used by Caffe.
-Fig.2(d) shows the Distributed Hogwild framework implemented in SINGA.
-Its configuration is as follows:
+Caffe で使われている **asynchronous** フレームワークです。
+Fig.2(d)に、SINGA で実装された Distributed Hogwild を示します。
+cluster フィールドの設定は次のとおりです。
 
     cluster {
         nworker_groups: 3

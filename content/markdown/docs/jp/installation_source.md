@@ -1,12 +1,12 @@
-# Building SINGA from source
+# ソースからのビルド
 
 ---
 
-## Dependencies
+## Dependencies （依存性）
 
-SINGA is developed and tested on Linux platforms.
+SINGA は Linux プラットフォームで開発されました。
 
-The following dependent libraries are required:
+下記のライブラリを必要とします。ご確認ください。
 
   * glog version 0.3.3
 
@@ -21,35 +21,33 @@ The following dependent libraries are required:
   * zookeeper version 3.4.6
 
 
-Optional dependencies include:
+オプション
 
   * lmdb version 0.9.10
 
 
-You can install all dependencies into $PREFIX folder by
+すべての Dependencies をインストールするには
 
-    # make sure you are in the thirdparty folder
+    # thirdparty フォルダに移動
     cd thirdparty
     ./install.sh all $PREFIX
 
-If $PREFIX is not a system path (e.g., /usr/local/), please export the following
-variables to continue the building instructions,
+$PREFIX がシステムパス (例 /usr/local/) でない場合は、下記の変数を exportコマンドで設定してください。
 
     export LD_LIBRARY_PATH=$PREFIX/lib:$LD_LIBRARY_PATH
     export CPLUS_INCLUDE_PATH=$PREFIX/include:$CPLUS_INCLUDE_PATH
     export LIBRARY_PATH=$PREFIX/lib:$LIBRARY_PATH
     export PATH=$PREFIX/bin:$PATH
 
-More details on using this script is given below.
+インストールスクリプトの詳細は、このページの下にあります。
 
-## Building SINGA from source
+## ソースからのビルド
 
-SINGA is built using GNU autotools. GCC (version >= 4.8) is required.
-There are two ways to build SINGA,
+GNU autotools を使用します。まずは GCC (version >= 4.8) のバージョンを確認してください。
 
-  * If you want to use the latest code, please clone it from
-  [Github](https://github.com/apache/incubator-singa.git) and execute
-  the following commands,
+SINGA をビルドする２つの方法を用意しました。
+
+  * Git コマンドを使用して [Github](https://github.com/apache/incubator-singa.git) から最新のソースコード（レポジトリ）をクローンし、次のコマンドを実行します。
 
         $ git clone git@github.com:apache/incubator-singa.git
         $ cd incubator-singa
@@ -57,20 +55,18 @@ There are two ways to build SINGA,
         $ ./configure
         $ make
 
-  Note: It is an oversight that we forgot to delete the singa repo under [nusinga](https://github.com/orgs/nusinga)
-  account after we became Apache Incubator project -- the source
-  in that repo was not up to date, and we apologize for any inconvenience.
+  Note: [nusinga](https://github.com/orgs/nusinga) アカウントの singa repository は Apache Incubator project として使用していたものなので、最新ではありません。ご注意ください。
 
-  * If you download a release package, please follow the instructions below,
+  * Release パッケージをダウンロードし、次のコマンドを実行します。
 
         $ tar xvf singa-xxx
         $ cd singa-xxx
         $ ./configure
         $ make
 
-    Some features of SINGA depend on external libraries. These features can be
-    compiled with `--enable-<feature>`.
-    For example, to build SINGA with lmdb support, you can run:
+    ある機能は外部ライブラリに依存します。
+    それらの機能を利用するために、`--enable-<feature>` を付けてコンパイルしてください。
+    例えば、lmdb サポートを追加するには
 
         $ ./configure --enable-lmdb
 
@@ -85,50 +81,45 @@ More details about configure script can be found by running:
 		$ ./configure -h
 -->
 
-After compiling SINGA successfully, the *libsinga.so* and the executable file
-*singa* will be generated into *.libs/* folder.
+うまくコンパイルが成功すると、*.libs/* フォルダ内に *libsinga.so* と実行ファイル *singa* が生成されます。
 
-If some dependent libraries are missing (or not detected), you can use the
-following script to download and install them:
-
+特定の dependent ライブラリが見つからない場合、次のスクリプトを実行してください。
 <!---
 to be updated after zhongle changes the code to use
 
     ./install.sh libname \-\-prefix=
 
 -->
-    # must goto thirdparty folder
+    # thirdparty フォルダに移動
     $ cd thirdparty
     $ ./install.sh LIB_NAME PREFIX
 
-If you do not specify the installation path, the library will be installed in
-the default folder specified by the software itself.  For example, if you want
-to install `zeromq` library in the default system folder, run it as
+インストールパスを指定しない場合、ライブラリは（ソフトウェアが指定した）デフォルトのフォルダにインストールされます。
+例えば、デフォルトのフォルダに `zeromq` ライブラリをインストールするには、次のコマンドを
 
     $ ./install.sh zeromq
 
-Or, if you want to install it into another folder,
+別のフォルダ（e.g., PREFIX）にインストールするには、次のコマンドを
 
     $ ./install.sh zeromq PREFIX
 
-You can also install all dependencies in */usr/local* directory:
+*/usr/local*　フォルダにすべての Dependencies をインストールするには、次のコマンドを
 
     $ ./install.sh all /usr/local
 
-Here is a table showing the first arguments:
+ライブラリ名（LIB_NAME）は以下のとおりです。
 
-    LIB_NAME  LIBRARIE
-    czmq*                 czmq lib
-    glog                  glog lib
-    lmdb                  lmdb lib
-    OpenBLAS              OpenBLAS lib
-    protobuf              Google protobuf
-    zeromq                zeromq lib
-    zookeeper             Apache zookeeper
+    LIB_NAME          Library
+    czmq（注）       　czmq lib
+    glog              glog lib
+    lmdb              lmdb lib
+    OpenBLAS          OpenBLAS lib
+    protobuf          Google protobuf
+    zeromq            zeromq lib
+    zookeeper         Apache zookeeper
 
-*: Since `czmq` depends on `zeromq`, the script offers you one more argument to
-indicate `zeromq` location.
-The installation commands of `czmq` is:
+(注) `czmq` をインストールする時、`zeromq` のパスを -f オプションで指定する必要があります。
+コマンドは次のとおりです。
 
 <!---
 to be updated to
@@ -138,8 +129,7 @@ to be updated to
 
     $./install.sh czmq  /usr/local -f=/usr/local/zeromq
 
-After the execution, `czmq` will be installed in */usr/local*. The last path
-specifies the path to zeromq.
+結果、*/usr/local* フォルダに `czmq` がインストールされます。
 
 ### FAQ
 * Q1:I get error `./configure --> cannot find blas_segmm() function` even I

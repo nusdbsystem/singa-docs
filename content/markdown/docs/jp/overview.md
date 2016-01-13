@@ -33,7 +33,7 @@ SINGAは、ディープラーニングモデルのネットワークの「レイ
 
 ## システム概要
 
-<img src="../images/sgd.png" align="center" width="400px"/>
+<img src="../../images/sgd.png" align="center" width="400px"/>
 <span><strong>Figure 1 - SGD フロー</strong></span>
 
 「ディープラーニングモデルをトレーニングする」とは、
@@ -43,7 +43,7 @@ SINGAは、ディープラーニングモデルのネットワークの「レイ
 そこで、Stochastic Gradient Descent (確率的勾配降下法) を利用します。
 Figure 1 のように、ランダムに初期化されたパラメーターの値を、損失関数が小さくなるよう繰り返しアップデートしていきます。
 
-<img src="../images/overview.png" align="center" width="400px"/>
+<img src="../../images/overview.png" align="center" width="400px"/>
 <span><strong>Figure 2 - SINGA 概要</strong></span>
 
 トレーニングに要するワークロードは、workers と servers に分散されます。Figure 2 のように、ループ毎に workers は *TrainOneBatch* 関数を呼び、パラメーター勾配を計算します。
