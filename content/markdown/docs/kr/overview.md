@@ -34,7 +34,7 @@ SINGA는 딥러닝 모델의 네트워크 "레이어" 개념에 따라 직관적
 ## 시스템 개요
 
 <img src = "../ images / sgd.png"align = "center"width = "400px"/>
-<span> <strong> Figure 1 - SGD 흐름 </ strong> </ span>
+<span> <strong> Figure 1 - SGD 흐름 </strong> </span>
 
 "딥러닝 모델을 학습한다"는 것은 특정 작업 (분류, 예측 등)을 달성하기 위해 사용되는 특징량(feature)을 생성하는 변환 함수의 최적의 파라미터를 찾는 것입니다.
 변수의 좋고 나쁨은, Cross-Entropy Loss (https://en.wikipedia.org/wiki/Cross_entropy) 등의 loss function (손실 함수)에서 확인합니다. 이 함수는 일반적으로 비선형 또는 비 볼록 함수이므로 閉解을 찾기가 어렵습니다.
@@ -43,7 +43,7 @@ SINGA는 딥러닝 모델의 네트워크 "레이어" 개념에 따라 직관적
 Figure 1과 같이 무작위로 초기화 된 매개 변수의 값을 손실 함수가 작아 지도록 반복 업데이트하고 있습니다.
 
 <img src = "../ images / overview.png"align = "center"width = "400px"/>
-<span> <strong> Figure 2 - SINGA 개요 </ strong> </ span>
+<span> <strong> Figure 2 - SINGA 개요 </strong> </span>
 
 트레이닝에 필요한 워크로드는 workers와 servers에 분산됩니다. Figure 2와 같이 루프마다 workers는 *TrainOneBatch* 함수를 호출 매개 변수 기울기를 계산합니다.
 *TrainOneBatch* 신경망의 구조가 기술 된 *NeuralNet* 개체에 따라 "레이어"를 차례로 둘러보고 있습니다.

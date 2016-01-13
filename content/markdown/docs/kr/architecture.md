@@ -5,7 +5,7 @@
 ## 논리적 아키텍처
 
 <img src = "../ images / logical.png"style = "width : 550px"/>
-<p> <strong> Fig.1 - 시스템 아키텍처 </ strong> </ p>
+<p> <strong> Fig.1 - 시스템 아키텍처 </strong> </p>
 
 SINGA는 다양한 분산 [트레이닝 프레임워크](frameworks.html) (동기 또는 비동기 트레이닝)을 지원하는 유연한 구조를 가지고 있습니다.
 Fig.1. 시스템의 구조를 보여줍니다.
