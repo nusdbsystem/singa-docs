@@ -4,7 +4,7 @@
 
 ## ロジカル アーキテクチャー
 
-<img src="../images/logical.png" style="width: 550px"/>
+<img src="../../images/logical.png" style="width: 550px"/>
 <p><strong> Fig.1 - システム アーキテクチャー</strong></p>
 
 SINGAは、多様な分散[トレーニング フレームワーク](frameworks.html) (同期、または非同期トレーニング).

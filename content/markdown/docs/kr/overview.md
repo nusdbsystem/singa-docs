@@ -2,8 +2,8 @@
 
 ---
 
-SINGA는 대규모 데이터 분석을 위한 딥러닝 모델의 트레이닝을 목적으로 한 "분산 딥 러닝 플랫폼" 입니다.
-모델이 되는 뉴럴네트워크의 "레이어"개념에 따라 직관적으로 프로그래밍을 할 수 있도록 디자인되어 있습니다.
+SINGA는 대규모 데이터 분석을 위한 딥러닝 모델의 트레이닝을 목적으로 한 "분산 딥러닝 플랫폼" 입니다.
+모델이 되는 뉴럴네트워크의 "레이어" 개념에 따라 직관적으로 프로그래밍을 할 수 있도록 디자인되어 있습니다.
 
 * Convolutional Neural Network 와 같은 피드포워드 네트워크와 Restricted Boltzmann Machine 과 같은 에너지 모델, Recurrent Neural Network 모델 등 다양한 모델을 지원합니다.
 
@@ -33,7 +33,7 @@ SINGA는 딥러닝 모델의 네트워크 "레이어" 개념에 따라 직관적
 
 ## 시스템 개요
 
-<img src = "../ images / sgd.png"align = "center"width = "400px"/>
+<img src = "../../images/sgd.png" align="center" width="400px"/>
 <span> <strong> Figure 1 - SGD 흐름 </strong> </span>
 
 "딥러닝 모델을 학습한다"는 것은 특정 작업 (분류, 예측 등)을 달성하기 위해 사용되는 특징량(feature)을 생성하는 변환 함수의 최적의 파라미터를 찾는 것입니다.
@@ -42,7 +42,7 @@ SINGA는 딥러닝 모델의 네트워크 "레이어" 개념에 따라 직관적
 그래서 Stochastic Gradient Descent (확률적구배강하법)을 이용합니다.
 Figure 1과 같이 무작위로 초기화 된 매개 변수의 값을 손실 함수가 작아 지도록 반복 업데이트하고 있습니다.
 
-<img src = "../ images / overview.png"align = "center"width = "400px"/>
+<img src = "../../images/overview.png" align="center" width="400px"/>
 <span> <strong> Figure 2 - SINGA 개요 </strong> </span>
 
 트레이닝에 필요한 워크로드는 workers와 servers에 분산됩니다. Figure 2와 같이 루프마다 workers는 *TrainOneBatch* 함수를 호출 매개 변수 기울기를 계산합니다.
@@ -55,12 +55,12 @@ Figure 1과 같이 무작위로 초기화 된 매개 변수의 값을 손실 함
 SINGA에서 "Job"은 뉴럴네트워크 모델과 데이터 트레이닝 방법, 클러스터 토폴로지 등이 기술 된 "Job Configuration"을 말합니다.
 Job configuration은 Figure 2에 그려진 다음의 4 가지 요소를 가집니다.
 
-  * [NeuralNet (neural-net.html) : 뉴럴네트워크의 구조와 각 "레이어"의 설정을 기술합니다.
-  * [TrainOneBatch (train-one-batch.html) : 모델 카테고리에 적합한 알고리즘을 기술합니다.
-  * [Updater] (updater.html) : server에서 매개 변수를 업데이트하는 방법을 기술합니다.
-  * [Cluster Topology (distributed-training.html) : workers와 servers 분산 토폴로지를 기술합니다.
+  * [NeuralNet](neural-net.html) : 뉴럴네트워크의 구조와 각 "레이어"의 설정을 기술합니다.
+  * [TrainOneBatch](train-one-batch.html) : 모델 카테고리에 적합한 알고리즘을 기술합니다.
+  * [Updater](updater.html) : server에서 매개 변수를 업데이트하는 방법을 기술합니다.
+  * [Cluster Topology](distributed-training.html) : workers와 servers 분산 토폴로지를 기술합니다.
 
-[main 함수 (programming-guide.html)의 SINGA 드라이버로 작업을 전달합니다.
+[main 함수](programming-guide.html)의 SINGA 드라이버로 작업을 전달합니다.
 
 이 프로세스는 Hadoop에서의 Job 서브미션과 비슷합니다.
 유저가 main 함수에서 작업 설정을 합니다.

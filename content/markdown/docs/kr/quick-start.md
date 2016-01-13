@@ -18,7 +18,7 @@ SINGA 트레이닝은 [zookeeper](https://zookeeper.apache.org/)를 이용합니
 
 (`./bin/zk-service.sh stop` // zookeeper 중지).
 
-기본 포트를 사용하지 않고 zookeeper를 시작시킬 때`conf / singa.conf`을 편집하십시오.
+기본 포트를 사용하지 않고 zookeeper를 시작시킬 때 `conf/singa.conf`을 편집하십시오.
 
     zookeeper_host : "localhost : YOUR_PORT"
 
@@ -40,31 +40,31 @@ SINGA 트레이닝은 [zookeeper](https://zookeeper.apache.org/)를 이용합니
 
 데이터 세트 다운로드와 Triaing이나 Test를위한 데이터 샤드의 생성은 다음과 같이 실시합니다.
 
-    cd examples / cifar10 /
+    cd examples/cifar10/
     cp Makefile.example Makefile
     make download
     make create
 
-Training과 Test 데이터 세트는 각각 * cifar10-train-shard *
-그리고 * cifar10-test-shard * 폴더에 만들어집니다. 모든 이미지의 특징 평균을 묘사 한 * image_mean.bin * 파일도 생성됩니다.
+Training과 Test 데이터 세트는 각각 *cifar10-train-shard*
+그리고 *cifar10-test-shard* 폴더에 만들어집니다. 모든 이미지의 특징 평균을 기술한 *image_mean.bin* 파일도 생성됩니다.
 
-CNN 모델 학습에 필요한 소스 코드는 모든 SINGA에 포함되어 있습니다. 코드를 추가 할 필요가 없습니다.
-작업 설정 파일 (*job.conf*) 을 지정하여 스크립트 (*.. / .. / bin / singa-run.sh*)를 실행합니다.
-SINGA 코드를 변경하거나 추가 할 때, 프로그래밍 가이드 (programming-guide.html)를 참조하십시오.
+CNN 모델 학습에 필요한 소스 코드는 모두 SINGA에 포함되어 있습니다. 코드를 추가 할 필요는 없습니다.
+작업 설정 파일 (*job.conf*) 을 지정하여 스크립트 (*../../bin/singa-run.sh*)를 실행합니다.
+SINGA 코드를 변경하거나 추가 할 때는, 프로그래밍 가이드 (programming-guide.html)를 참조하십시오.
 
 #### 병렬화 없이 트레이닝
 
 Cluster Topology의 기본값은 하나의 worker와 하나의 server가 있습니다.
-데이터와 신경망의 병렬 처리는되지 않습니다.
+데이터와 모델의 병렬 처리는 되지 않습니다.
 
-훈련을 시작하려면 다음 스크립트를 실행합니다.
+트레이닝을 시작하기 위하여 다음 스크립트를 실행합니다.
 
     # goto top level folder
     cd ../../
     ./bin/singa-run.sh -conf examples/cifar10/job.conf
 
 
-현재 실행중인 작업의 목록을 보려면
+현재 실행중인 작업의 리스트를 보려면
 
     ./bin/singa-console.sh list
 
@@ -72,13 +72,13 @@ Cluster Topology의 기본값은 하나의 worker와 하나의 server가 있습�
     ---------- | -----------
     24 | 1
 
-작업 종료하려면
+작업을 종료하려면
 
     ./bin/singa-console.sh kill JOB_ID
 
 
-로그 및 작업 정보 * / tmp / singa-log * 폴더에 저장됩니다.
-* conf / singa.conf * 파일`log-dir`에서 변경 가능합니다.
+로그 및 작업 정보는 */tmp/singa-log* 폴더에 저장됩니다.
+*conf/singa.conf* 파일의 `log-dir`에서 변경 가능합니다.
 
 
 #### 비동기 병렬 트레이닝
@@ -91,12 +91,11 @@ Cluster Topology의 기본값은 하나의 worker와 하나의 server가 있습�
       workspace : "examples/cifar10/"
     }
 
-여러 worker 그룹을 출시함으로써
-In SINGA, 비동기 트레이닝 (architecture.html)을 수행 할 수 있습니다.
+여러 worker 그룹을 실행함으로써 [비동기 트레이닝](architecture.html)을 할 수 있습니다.
 예를 들어, *job.conf* 을 위와 같이 변경합니다.
 기본적으로 하나의 worker 그룹이 하나의 worker를 갖도록 설정되어 있습니다.
 위의 설정은 하나의 프로세스에 2 개의 worker가 설정되어 있기 때문에 2 개의 worker 그룹이 동일한 프로세스로 실행됩니다.
-결과 메모리 [Downpour (frameworks.html) 트레이닝 프레임 워크로 실행됩니다.
+결과 인메모리 [Downpour](frameworks.html) 트레이닝 프레임워크로 실행됩니다.
 
 사용자는 데이터의 분산을 신경 쓸 필요는 없습니다.
 랜덤 오프셋에 따라 각 worker 그룹에 데이터가 보내집니다.
@@ -128,23 +127,23 @@ In SINGA, 비동기 트레이닝 (architecture.html)을 수행 할 수 있습니
       workspace : "examples/cifar10/"
     }
 
-하나의 worker 그룹으로 여러 worker를 실행하여 동기 트레이닝 (architecture.html)을 수행 할 수 있습니다.
+하나의 worker 그룹으로 여러 worker를 실행하여 [동기 트레이닝](architecture.html)을 수행 할 수 있습니다.
 예를 들어, *job.conf* 파일을 위와 같이 변경합니다.
 위의 설정은 하나의 worker 그룹에 2 개의 worker가 설정되었습니다.
-worker 우리는 그룹 내에서 동기화합니다.
-이것은 메모리 [sandblaster (frameworks.html)로 실행됩니다.
-모델은 2 개의 worker로 분할됩니다. 각 레이어가 2 개의 worker로 보냅니다.
-배분 된 레이어는 원본 레이어와 기능은 같지만 특징 인스턴스의 수가`B / g`됩니다.
-여기서`B`는 미니밧찌 인스턴스의 숫자로`g`는 그룹의 worker 수 있습니다.
-[다른 체계 (neural-net.html)를 이용한 레이어 (신경망) 파티션 방법도 있습니다.
+worker 들은 그룹 내에서 동기화합니다.
+이것은 인메모리 [sandblaster](frameworks.html)로 실행됩니다.
+모델은 2 개의 worker로 분할됩니다. 각 레이어가 2 개의 worker로 분산됩니다.
+배분 된 레이어는 원본 레이어와 기능은 같지만 특징 인스턴스의 수가 `B / g` 로 됩니다.
+여기서 `B`는 미니밧치 인스턴스의 숫자로 `g`는 그룹의 worker 수 입니다.
+[다른 스킴](neural-net.html)을 이용한 레이어 (뉴럴네트워크) 파티션 방법도 있습니다.
 
-다른 설정은 모두 "병렬화 없음"의 경우와 동일합니다.
+다른 설정들은 모두 "병렬화 없음"의 경우와 동일합니다.
 
     ./bin/singa-run.sh -conf examples/cifar10/job.conf
 
-### 클러스터에서의 훈련
+### 클러스터에서의 트레이닝
 
-클러스터 설정을 변경하여 위 트레이닝 프레임 워크의 확장합니다.
+클러스터 설정을 변경하여 위 트레이닝 프레임워크를 확장합니다.
 
     nworker_per_procs : 1
 
@@ -170,7 +169,7 @@ e.g.,
 
 ## Mesos에서 실행
 
-* working * ...
+*working* ...
 
 ## 다음
 

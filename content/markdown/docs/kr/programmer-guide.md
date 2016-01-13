@@ -16,7 +16,7 @@ on writing user's own main function to register components implemented by
 themselves. In addition, the training data must be prepared, which has the same
 [process](data.html) for both advanced users and basic users.
 
-<img src="../images/overview.png" align="center" width="400px"/>
+<img src="../../images/overview.png" align="center" width="400px"/>
 <span><strong>Figure 1 - SINGA overview.</strong></span>
 
 
@@ -95,4 +95,3 @@ path of the *mysinga* and base job configuration to *./bin/singa-run.sh*.
 
 The [RNN application](rnn.html) provides a full example of
 implementing the main function for training a specific RNN model.
-
