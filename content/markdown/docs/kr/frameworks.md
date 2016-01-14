@@ -42,7 +42,7 @@ both **synchronous** and **asynchronous** training frameworks.
 Here we illustrate how to configure
 popular distributed training frameworks in SINGA.
 
-<img src="../images/frameworks.png" style="width: 800px"/>
+<img src="../../images/frameworks.png" style="width: 800px"/>
 <p><strong> Fig.1 - Training frameworks in SINGA</strong></p>
 
 ###Sandblaster

@@ -53,15 +53,15 @@ Figure 1 のように、ランダムに初期化されたパラメーターの�
 
 ## ジョブ
 
-SINGAで「ジョブ」とは、ニューラルネットワークモデルとデータ、トレーニング方法やクラスタートポロジー等が記述された、「Job Configuration」を指します。
-job configurationは、Figure 2に描かれた次の4つのコンポネントを特定します。
+SINGA の「ジョブ」とは、ニューラルネットワークモデルとデータ、トレーニング方法やクラスタートポロジー等が記述された、「Job Configuration」を指します。
+Job Configurationは、Figure 2に描かれた次の4つのコンポネントを特定します。
 
   * [NeuralNet](neural-net.html)：ニューラルネットワークの構造と、各「レイヤー」の設定を記述します。
   * [TrainOneBatch](train-one-batch.html)：異なるモデルカテゴリに適したアルゴリズムを記述します。
-  * [Updater](updater.html)： serverでの、パラメーターのアップデート方法を記述します。
+  * [Updater](updater.html)： パラメーターのアップデート方法を記述します。
   * [Cluster Topology](distributed-training.html)：workers と servers の分散トポロジーを記述します。
 
-[main 関数](programming-guide.html)のSINGAドライバにジョブを渡します。
+[main 関数](programming-guide.html)の SINGA ドライバにジョブを渡します。
 
 このプロセスは、Hadoopでのジョブサブミッションに似ています。
 ユーザーが main関数内でジョブの設定をします。
