@@ -247,3 +247,14 @@ google.protobuf.internal when I try to import .py files.
   then you just set your environment variable as
 
       $ export LD_LIBRARY_PATH=/usr/local/lib64:$LD_LIBRARY_PATH
+* Q10: When I build glog, it reports that "src/logging_unittest.cc:83:20: error: ‘gflags’ is not a namespace-name"
+
+  A10: It maybe that you have installed gflags with a different namespace such as "google". so glog can't find 'gflags' namespace.
+  
+  Because it doesn't require gflags to build glog. So you can change the configure.ac file to ignore gflags.
+
+  1. cd to glog src directory
+  2. change line 125 of configure.ac  to "AC_CHECK_LIB(gflags, main, ac_cv_have_libgflags=0, ac_cv_have_libgflags=0)"
+  3. autoreconf 
+ 
+  After this, you can build glog again.
