@@ -253,8 +253,8 @@ google.protobuf.internal when I try to import .py files.
   
   Because it doesn't require gflags to build glog. So you can change the configure.ac file to ignore gflags.
 
-  #cd to glog src directory
-  #change line 125 of configure.ac  to "AC_CHECK_LIB(gflags, main, ac_cv_have_libgflags=0, ac_cv_have_libgflags=0)"
-  #autoreconf 
+  1. cd to glog src directory
+  2. change line 125 of configure.ac  to "AC_CHECK_LIB(gflags, main, ac_cv_have_libgflags=0, ac_cv_have_libgflags=0)"
+  3. autoreconf 
  
   After this, you can build glog again.
