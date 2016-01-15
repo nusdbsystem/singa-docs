@@ -214,3 +214,15 @@ to be updated to
   你只需这样设置你的环境变量：
 
       $ export LD_LIBRARY_PATH=/usr/local/lib64:$LD_LIBRARY_PATH
+
+* Q10: 当我在编译glog时，提示如下错误"src/logging_unittest.cc:83:20: error: ‘gflags’ is not a namespace-name"
+
+  A10: 可能是你已经安装的gflags版本，其命名空间不是gflags，而是其他的，比如是'google'。因此glog不能找到 'gflags' 命名空间。
+  
+  编译glog不需要gflags，你可以修改 configure.ac 文件，忽略 gflags。
+
+  1. cd to glog src directory
+  2. 修改 configure.ac 第125行，改为 "AC_CHECK_LIB(gflags, main, ac_cv_have_libgflags=0, ac_cv_have_libgflags=0)"
+  3. autoreconf 
+ 
+  然后，请重新编译glog。
