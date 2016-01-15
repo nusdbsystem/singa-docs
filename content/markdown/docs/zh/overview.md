@@ -19,23 +19,23 @@ SINGA的编程模型是基于层的抽象而设计，这对于深度学习模型
 
 ## 系统概览
 
-<img src="../../../../content/resources/images/sgd.png" align="center" width="400px"/>
+<img src="../../images/sgd.png" align="center" width="400px"/>
 <span><strong>图1 - 随机梯度下降流程图</strong></span>
 
 对于特定的任务，训练一个深度学习模型就是找出能产生良好特征的转换函数中的最优参数。参数的合适程度由损失函数来度量，如交叉熵损失函数[（Cross-Entropy Loss）](https://en.wikipedia.org/wiki/Cross_entropy)。因为损失函数一般都是非线性和非凸的，难以得到一个封闭形式解。典型的解决方案是使用随机梯度下降（SGD）算法，首先随机地初始化参数，然后迭代地更新参数值，减小损失函数值，如图1所示。
 
-<img src="../../../../content/resources/images/overview.png" align="center" width="400px"/>
+<img src="../../images/overview.png" align="center" width="400px"/>
 <span><strong>图2 - SINGA 概览</strong></span>
 
 SINGA使用随机梯度下降来训练深度学习模型中的参数。训练的作业会被分配到作业者（worker）单元和服务器（server）单元，如图2所示。每次迭代中，作业者调用 *TrainOneBatch* 函数计算参数的梯度。 *TainOneBatch* 函数以一个神经网络对象 *NeuralNet* 作为输入，以一定的顺序遍历 *NeuralNet*。计算得到的梯度将发送给局部的根节点（stub），该局部根节点聚合请求并转发给对应的服务器请求更新。服务器给作业者发回更新后的参数，进入下一轮迭代。
 
 ## 作业提交
 
-在SINGA中提交一个作业（即训练一个深度学习模型），用户需要将任务配置传给[主函数](../programming-guide.md)中的SINGA driver。作业配置需要明确图2中的四个主要部分：
+在SINGA中提交一个作业（即训练一个深度学习模型），用户需要将任务配置传给[主函数](programming-guide.md)中的SINGA driver。作业配置需要明确图2中的四个主要部分：
 
-  * [NeuralNet](../neural-net.md) ：描述神经网络结构，包括每层的具体设置和层与层的连接关系；
-  * [TrainOneBatch](../train-one-batch.md) ：该算法需要根据不同的模型类别而定制;
-  * [Updater](../updater.md) ：定义服务器端更新参数的协议；
-  * [Cluster Topology](../distributed-training.md) ：指定服务器和工作者的分布式拓扑架构。
+  * [NeuralNet](neural-net.md) ：描述神经网络结构，包括每层的具体设置和层与层的连接关系；
+  * [TrainOneBatch](train-one-batch.md) ：该算法需要根据不同的模型类别而定制;
+  * [Updater](updater.md) ：定义服务器端更新参数的协议；
+  * [Cluster Topology](distributed-training.md) ：指定服务器和工作者的分布式拓扑架构。
 
 作业提交过程跟Hadoop的作业提交类似，用户在主函数中配置好自己的任务，设置mapper和reducer等。在Hadoop中，用户可用自己实现的或者内建的mapper和reducer来配置他们的作业；类似地，在SINGA中，用户也可以用自己实现的或者内建的layer，updater等来配置他们的作业。

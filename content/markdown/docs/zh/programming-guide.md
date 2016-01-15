@@ -4,14 +4,14 @@
 
 要提交一个训练作业，用户需要提供图1中的四个部分的配置：
 
-  * [NeuralNet](../neural-net.md) ：描述神经网络结构，包括每层的具体设置和层与层的连接关系；
-  * [TrainOneBatch](../train-one-batch.md) ：该算法需要根据不同的模型类别而定制;
-  * [Updater](../updater.md) ：定义服务器端更新参数的协议；
-  * [Cluster Topology](../distributed-training.md) ：指定服务器和工作者的分布式拓扑架构。
+  * [NeuralNet](neural-net.md) ：描述神经网络结构，包括每层的具体设置和层与层的连接关系；
+  * [TrainOneBatch](train-one-batch.md) ：该算法需要根据不同的模型类别而定制;
+  * [Updater](updater.md) ：定义服务器端更新参数的协议；
+  * [Cluster Topology](distributed-training.md) ：指定服务器和工作者的分布式拓扑架构。
 
-*初级用户指南* 将介绍如何利用内建层提交一个训练作业，而 *高级用户指南* 将详细介绍如何编写用户自己的主函数并注册自己实现的组件。此外，高级用户和初级用户对训练数据集的[处理](../data.md)方式是相同的。
+*初级用户指南* 将介绍如何利用内建层提交一个训练作业，而 *高级用户指南* 将详细介绍如何编写用户自己的主函数并注册自己实现的组件。此外，高级用户和初级用户对训练数据集的[处理](data.md)方式是相同的。
 
-<img src="../../../../content/resources/images/overview.png" align="center" width="400px"/>
+<img src="../../images/overview.png" align="center" width="400px"/>
 <span><strong>图 1 - SINGA 概览</strong></span>
 
 
@@ -22,12 +22,12 @@
 
     ./bin/singa-run.sh -conf <path to job conf> [-resume]
 
-`-resume` 表示从上次的[检查点（checkpoint）](../checkpoint.md)继续训练。
-[MLP](../mlp.md) 模型和 [CNN](../cnn.md) 模型使用内建层提交训练作业。请阅读相关页面，查看它们的作业配置文件，这些页面会介绍每个组件配置的细节。
+`-resume` 表示从上次的[检查点（checkpoint）](checkpoint.md)继续训练。
+[MLP](mlp.md) 模型和 [CNN](cnn.md) 模型使用内建层提交训练作业。请阅读相关页面，查看它们的作业配置文件，这些页面会介绍每个组件配置的细节。
 
 ## 高级用户指南
 
-如果用户的模型中包含一些自己定义的组件，比如[Updater](../updater.md)，用户必须自己编写主函数注册这些组件，跟Hadoop的主函数类似。一般地，主函数应该
+如果用户的模型中包含一些自己定义的组件，比如[Updater](updater.md)，用户必须自己编写主函数注册这些组件，跟Hadoop的主函数类似。一般地，主函数应该
 
   * 初始化SINGA，如：设置日志；
   * 注册用户自定义组件；
@@ -64,4 +64,4 @@ driver 类' `Init` 方法加载用户在命令行参数中 （`-conf <job conf>`
 
     ./bin/singa-run.sh -conf <path to job conf> -exec <path to mysinga> [other arguments]
 
-[RNN application](../rnn.md) 提供了一个完整的实现主函数训练特定RNN模型的例子。
+[RNN application](rnn.md) 提供了一个完整的实现主函数训练特定RNN模型的例子。
