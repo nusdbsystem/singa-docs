@@ -72,6 +72,7 @@ This release includes following features:
 
 
 Some bugs are fixed during the development of this release
+
   * [SINGA-2](https://issues.apache.org/jira/browse/SINGA-2) Check failed: zsock_connect
   * [SINGA-5](https://issues.apache.org/jira/browse/SINGA-5) Server early terminate when zookeeper singa folder is not initially empty
   * [SINGA-15](https://issues.apache.org/jira/browse/SINGA-15) Fixg a bug from ConnectStub function which gets stuck for connecting layer_dealer_
@@ -89,6 +90,7 @@ Some bugs are fixed during the development of this release
 
 
 Features planned for the next release
+
   * [SINGA-11](https://issues.apache.org/jira/browse/SINGA-11) Start SINGA using Mesos
   * [SINGA-31](https://issues.apache.org/jira/browse/SINGA-31) Extend Blob to support xpu (cpu or gpu)
   * [SINGA-35](https://issues.apache.org/jira/browse/SINGA-35) Add random number generators
