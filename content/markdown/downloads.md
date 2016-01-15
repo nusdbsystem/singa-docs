@@ -27,7 +27,16 @@
     * [\[PGP\]](https://dist.apache.org/repos/dist/release/incubator/singa/apache-singa-incubating-0.1.0.tar.gz.asc)
       [\[MD5\]](https://dist.apache.org/repos/dist/release/incubator/singa/apache-singa-incubating-0.1.0.tar.gz.md5)
       [\[KEYS\]](https://dist.apache.org/repos/dist/release/incubator/singa/KEYS)
-    * [Release Notes 0.1.0](releases/RELEASE_NOTES_0.1.0.html)
     * [Amazon EC2 image](https://console.aws.amazon.com/ec2/v2/home?region=ap-southeast-1#LaunchInstanceWizard:ami=ami-b41001e6)
+    * [Release Notes 0.1.0](releases/RELEASE_NOTES_0.1.0.html)
+    * Major features include,
+      * Installation using GNU build utility
+      * Scripts for job management with zookeeper
+      * Programming model based on NeuralNet and Layer abstractions.
+      * System architecture based on Worker, Server and Stub.
+      * Training models from three different model categories, namely, feed-forward models, energy models and RNN models.
+      * Synchronous and asynchronous distributed training frameworks using CPU
+      * Checkpoint and restore
+      * Unit test using glog
 
 <a name="old_releases"></a>
