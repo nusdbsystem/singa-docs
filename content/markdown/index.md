@@ -2,6 +2,8 @@
   <title>A Distributed Deep Learning Platform</title>
 </head>
 ### Recent News
+* The **second release** is now available, 14 Jan, 2016. [Download SINGA v0.2.0](downloads.html).
+
 * SINGA will be presented at [Strata+Hadoop](http://strataconf.com/big-data-conference-sg-2015/public/schedule/detail/45123) on 2 Dec, 2015
 
 * SINGA was presented at [ACM Multimedia](http://www.acmmm.org/2015/at-a-glance/) Best Paper session and Open Source Software Competition session, 26-30 Oct, 2015 ([Slides](files/mm2015.ppt))
