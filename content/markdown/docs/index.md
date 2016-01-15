@@ -24,9 +24,3 @@
     * [RBM + Auto-encoder](rbm.html)
     * [Vanilla RNN for language modelling](rnn.html)
     * [Char-RNN](general-rnn.html)
-
----
-
-* [Chinese](zh/index.html)
-* [Japanese](jp/index.html)
-* [Korean](kr/index.html)

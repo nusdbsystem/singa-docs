@@ -65,37 +65,11 @@
     </head>
 
     <menu name="Documentaion">
-      <item name = "Latest" href="docs/index.html" collapse="true" >
-        <item name="Installation" href="docs/installation.html" collapse="true">
-	  <item name="From source" href="docs/installation_source.html"/>
-	  <item name="Using Docker" href="docs/docker.html"/>
-	</item>
-        <item name="Programmer Guide" href="docs/programmer-guide.html" collapse="true">
-          <item name ="Model Configuration" href="docs/model-config.html"/>
-          <item name="Neural Network" href="docs/neural-net.html"/>
-          <item name="Layer" href="docs/layer.html"/>
-          <item name="Param" href="docs/param.html"/>
-          <item name="TrainOneBatch" href="docs/train-one-batch.html"/>
-          <item name="Updater" href="docs/updater.html"/>
-        </item>
-        <item name="Distributed Training" href="docs/distributed-training.html" collapse="true" >
-          <item name="System Architecture" href="docs/architecture.html"/>
-          <item name="Frameworks" href="docs/frameworks.html"/>
-          <item name="Communication" href="docs/communication.html"/>
-          <item name="Hybrid Parallelism" href="docs/hybrid.html"/>
-	        <item name="Training on Mesos" href="docs/mesos.html"/>
-          <item name="Using HDFS" href="docs/hdfs.html"/>
-        </item>
-        <item name="Data Preparation" href="docs/data.html"/>
-        <item name="Checkpoint" href="docs/checkpoint.html"/>
-        <item name="Test" href="docs/test.html"/>
-        <item name="Examples" href="docs/examples.html" collapse="true" >
-          <item name="CNN" href="docs/cnn.html"/>
-          <item name="MLP" href="docs/mlp.html"/>
-          <item name="RBM + Auto-encoder" href="docs/rbm.html"/>
-          <item name="RNN" href="docs/rnn.html"/>
-        </item>
-        <item name="Debug" href="docs/debug.html"/>
+      <item name = "v0.2.0" href="docs/index.html" collapse="true" >
+        <item name="English" href="docs/index.html"/>
+        <item name="中文" href="docs/zh/index.html"/>
+        <item name="日本語" href="docs/jp/index.html"/>
+        <item name="한국어" href="docs/kr/index.html"/>
       </item>
       <item name = "v0.1.0" href="v0.1.0/index.html"/>
     </menu>
