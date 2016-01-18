@@ -31,11 +31,11 @@ SINGA使用随机梯度下降来训练深度学习模型中的参数。训练的
 
 ## 作业提交
 
-在SINGA中提交一个作业（即训练一个深度学习模型），用户需要将任务配置传给[主函数](programming-guide.md)中的SINGA driver。作业配置需要明确图2中的四个主要部分：
+在SINGA中提交一个作业（即训练一个深度学习模型），用户需要将任务配置传给[主函数](programming-guide.html)中的SINGA driver。作业配置需要明确图2中的四个主要部分：
 
-  * [NeuralNet](neural-net.md) ：描述神经网络结构，包括每层的具体设置和层与层的连接关系；
-  * [TrainOneBatch](train-one-batch.md) ：该算法需要根据不同的模型类别而定制;
-  * [Updater](updater.md) ：定义服务器端更新参数的协议；
-  * [Cluster Topology](distributed-training.md) ：指定服务器和工作者的分布式拓扑架构。
+  * [NeuralNet](neural-net.html) ：描述神经网络结构，包括每层的具体设置和层与层的连接关系；
+  * [TrainOneBatch](train-one-batch.html) ：该算法需要根据不同的模型类别而定制;
+  * [Updater](updater.html) ：定义服务器端更新参数的协议；
+  * [Cluster Topology](distributed-training.html) ：指定服务器和工作者的分布式拓扑架构。
 
 作业提交过程跟Hadoop的作业提交类似，用户在主函数中配置好自己的任务，设置mapper和reducer等。在Hadoop中，用户可用自己实现的或者内建的mapper和reducer来配置他们的作业；类似地，在SINGA中，用户也可以用自己实现的或者内建的layer，updater等来配置他们的作业。
