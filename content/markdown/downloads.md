@@ -30,13 +30,22 @@
     * [Amazon EC2 image](https://console.aws.amazon.com/ec2/v2/home?region=ap-southeast-1#LaunchInstanceWizard:ami=ami-b41001e6)
     * [Release Notes 0.1.0](releases/RELEASE_NOTES_0.1.0.html)
     * Major features include,
-      * Installation using GNU build utility
-      * Scripts for job management with zookeeper
-      * Programming model based on NeuralNet and Layer abstractions.
-      * System architecture based on Worker, Server and Stub.
-      * Training models from three different model categories, namely, feed-forward models, energy models and RNN models.
-      * Synchronous and asynchronous distributed training frameworks using CPU
-      * Checkpoint and restore
-      * Unit test using glog
+        * Installation using GNU build utility
+        * Scripts for job management with zookeeper
+        * Programming model based on NeuralNet and Layer abstractions.
+        * System architecture based on Worker, Server and Stub.
+        * Training models from three different model categories, namely, feed-forward models, energy models and RNN models.
+        * Synchronous and asynchronous distributed training frameworks using CPU
+        * Checkpoint and restore
+        * Unit test using glog
 
-<a name="old_releases"></a>
+**Disclaimer**
+
+Apache SINGA is an effort undergoing incubation at The Apache Software
+Foundation (ASF), sponsored by the name of Apache Incubator PMC. Incubation is
+required of all newly accepted projects until a further review indicates that
+the infrastructure, communications, and decision making process have stabilized
+in a manner consistent with other successful ASF projects. While incubation
+status is not necessarily a reflection of the completeness or stability of the
+code, it does indicate that the project has yet to be fully endorsed by the
+ASF.
