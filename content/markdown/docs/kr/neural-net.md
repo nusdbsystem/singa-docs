@@ -8,7 +8,7 @@ a set of unidirectionally connected [Layer](layer.html)s.
 This page describes how to convert an user's neural net into
 the configuration of `NeuralNet`.
 
-<img src="../images/model-category.png" align="center" width="200px"/>
+<img src="../../images/model-category.png" align="center" width="200px"/>
 <span><strong>Figure 1 - Categorization of popular deep learning models.</strong></span>
 
 ## Net structure configuration
@@ -21,7 +21,7 @@ category.
 ### Feed-forward models
 
 <div align = "left">
-<img src="../images/mlp-net.png" align="center" width="200px"/>
+<img src="../../images/mlp-net.png" align="center" width="200px"/>
 <span><strong>Figure 2 - Net structure of a MLP model.</strong></span>
 </div>
 
@@ -59,7 +59,7 @@ configuration for the MLP model shown in Figure 1 is as follows,
 
 ### Energy models
 
-<img src="../images/rbm-rnn.png" align="center" width="500px"/>
+<img src="../../images/rbm-rnn.png" align="center" width="500px"/>
 <span><strong>Figure 3 - Convert connections in RBM and RNN.</strong></span>
 
 
@@ -324,4 +324,3 @@ same subset of model parameters while other workers compute on different model
 parameters.  For example, to implement the hybrid parallelism in for the
 [DCNN model](http://arxiv.org/abs/1404.5997), we set `partition_dim = 0` for
 lower layers and `partition_dim = 1` for higher layers.
-

@@ -1,14 +1,13 @@
-# Programming Guide
+# 프로그래밍 가이드
 
 ---
 
-To submit a training job, users must provide the configuration of the
-four components shown in Figure 1:
+Figure 1에 그려진 다음과 같은 4가지 Components 를 설정하여 트레이닝을 시작합니다.
 
-  * a [NeuralNet](neural-net.html) describing the neural net structure with the detailed layer setting and their connections;
-  * a [TrainOneBatch](train-one-batch.html) algorithm which is tailored for different model categories;
-  * an [Updater](updater.html) defining the protocol for updating parameters at the server side;
-  * a [Cluster Topology](distributed-training.html) specifying the distributed architecture of workers and servers.
+  * [NeuralNet](neural-net.html) : 뉴럴네트워크의 구조와 각 "레이어"의 설정을 기술합니다.
+  * [TrainOneBatch](train-one-batch.html) : 모델 카테고리에 적합한 알고리즘을 기술합니다.
+  * [Updater](updater.html) : server에서 매개 변수를 업데이트하는 방법을 기술합니다.
+  * [Cluster Topology](distributed-training.html) : workers와 servers 분산 토폴로지를 기술합니다.
 
 The *Basic user guide* section describes how to submit a training job using
 built-in components; while the *Advanced user guide* section presents details
@@ -17,11 +16,11 @@ themselves. In addition, the training data must be prepared, which has the same
 [process](data.html) for both advanced users and basic users.
 
 <img src="../../images/overview.png" align="center" width="400px"/>
-<span><strong>Figure 1 - SINGA overview.</strong></span>
+<span><strong>Figure 1 - SINGA 개요 </strong></span>
 
 
 
-## Basic user guide
+## Basic 유저 가이드
 
 Users can use the default main function provided SINGA to submit the training
 job. For this case, a job configuration file written as a google protocol
@@ -36,7 +35,7 @@ examples use built-in components. Please read the corresponding pages for their
 job configuration files. The subsequent pages will illustrate the details on
 each component of the configuration.
 
-## Advanced user guide
+## Advanced 유저 가이드
 
 If a user's model contains some user-defined components, e.g.,
 [Updater](updater.html), he has to write a main function to
@@ -47,10 +46,9 @@ the main function should
 
   * register user-defined components.
 
-  * create and pass the job configuration to SINGA driver
+  * create and pass the job configuration to SINGA driver  
 
-
-An example main function is like
+main 함수의 샘플입니다.
 
     #include "singa.h"
     #include "user.h"  // header for user code
