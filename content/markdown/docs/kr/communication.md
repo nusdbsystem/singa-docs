@@ -17,8 +17,8 @@ Singa defined data structure instead of the Linux Socket.
 We will introduce the two components in detail with the following figure as an
 example architecture.
 
-<img src="../images/arch/arch2.png" style="width: 550px"/>
-<img src="../images/arch/comm.png" style="width: 550px"/>
+<img src="../../images/arch/arch2.png" style="width: 550px"/>
+<img src="../../images/arch/comm.png" style="width: 550px"/>
 <p><strong> Fig.1 - Example physical architecture and network connection</strong></p>
 
 Fig.1 shows an example physical architecture and its network connection.
@@ -30,7 +30,7 @@ server tasks are performed by the background threads.
 
 ## Message
 
-<object type="image/svg+xml" style="width: 100px" data="../images/msg.svg" > Not
+<object type="image/svg+xml" style="width: 100px" data="../../images/msg.svg" > Not
 supported </object>
 <p><strong> Fig.2 - Logical message format</strong></p>
 

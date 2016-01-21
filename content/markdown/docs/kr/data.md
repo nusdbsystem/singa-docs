@@ -1,8 +1,8 @@
-# Data Preparation
+# 데이터 준비
 
 ---
 
-SINGA uses input layers to load data.
+SINGA 는 데이터를 로딩하기 위하여 input layers 를 이용합니다.
 Users can store their data in any format (e.g., CSV or binary) and at any places
 (e.g., disk file or HDFS) as long as there are corresponding input layers that
 can read the data records and parse them.
