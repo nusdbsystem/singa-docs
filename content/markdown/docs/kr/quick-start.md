@@ -115,7 +115,7 @@ Cluster Topology의 기본값은 하나의 worker와 하나의 server가 있습�
 
 스크립트 실행 :
 
-    ./bin/singa-run.sh -conf examples/cifar10/job.conf
+    ./bin/singa-run.sh -conf examples/cifar10/job.conf
 
 #### 동기화 병렬 트레이닝
 
@@ -165,7 +165,7 @@ e.g.,
 
 스크립트의 실행은 "Single 노드 트레이닝"과 동일합니다.
 
-    ./bin/singa-run.sh -conf examples/cifar10/job.conf
+    ./bin/singa-run.sh -conf examples/cifar10/job.conf
 
 ## Mesos에서 실행
 
