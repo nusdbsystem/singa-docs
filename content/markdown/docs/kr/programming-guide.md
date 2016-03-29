@@ -9,31 +9,23 @@ Figure 1에 그려진 다음과 같은 4가지 Components 를 설정하여 트�
   * [Updater](updater.html) : server에서 매개 변수를 업데이트하는 방법을 기술합니다.
   * [Cluster Topology](distributed-training.html) : workers와 servers 분산 토폴로지를 기술합니다.
 
-The *Basic user guide* section describes how to submit a training job using
-built-in components; while the *Advanced user guide* section presents details
-on writing user's own main function to register components implemented by
-themselves. In addition, the training data must be prepared, which has the same
-[process](data.html) for both advanced users and basic users.
+*Basic 유저 가이드* 에서 built-in components 를 써서 트레이닝을 시작하는 방법을 설명합니다. *Advanced 유저 가이드* 에서는 유저가 임플리멘트한 모델, 함수, 알고리듬을 써서 트레이닝을 시작하는 방법을 설병합니다. 트레이닝 데이타는 [process](data.html) 를 참고로 준비를 해주세요.
 
 <img src="../../images/overview.png" align="center" width="400px"/>
-<span><strong>Figure 1 - SINGA 개요 </strong></span>
+<span><strong>Figure 1 - SINGA Overview </strong></span>
 
 
 
 ## Basic 유저 가이드
 
-Users can use the default main function provided SINGA to submit the training
-job. For this case, a job configuration file written as a google protocol
-buffer message for the [JobProto](../api/classsinga_1_1JobProto.html) must be provided in the command line,
+SINGA 에서 준비된 main 함수를 써서 쉽게 트레이닝을 시작할수 있습니다.
+이 경우 [JobProto](../api/classsinga_1_1JobProto.html) 를 위하여 google protocol buffer message 로 씌여진 job configuration 파일을 준비합니다. 그리고 아래의 커맨드라인을 실행합니다.
 
     ./bin/singa-run.sh -conf <path to job conf> [-resume]
 
-`-resume` is for continuing the training from last
-[checkpoint](checkpoint.html).
-The [MLP](mlp.html) and [CNN](cnn.html)
-examples use built-in components. Please read the corresponding pages for their
-job configuration files. The subsequent pages will illustrate the details on
-each component of the configuration.
+`-resume` 는 트레이닝을 저번 [checkpoint](checkpoint.html) 부터 다시 계속할때 쓰는 인수 입니다.
+[MLP](mlp.html) 와 [CNN](cnn.html) 샘플들은 built-in 컴포넌트를 쓰고 있습니다.
+Please read the corresponding pages for their job configuration files. The subsequent pages will illustrate the details on each component of the configuration.
 
 ## Advanced 유저 가이드
 
@@ -42,11 +34,11 @@ If a user's model contains some user-defined components, e.g.,
 register these components. It is similar to Hadoop's main function. Generally,
 the main function should
 
-  * initialize SINGA, e.g., setup logging.
+* SINGA 초기화, e.g., setup logging.
 
-  * register user-defined components.
+* 유저 컴포넌트의 등록
 
-  * create and pass the job configuration to SINGA driver  
+* job configuration 을 작성하고 SINGA driver 에서 설정
 
 main 함수의 샘플입니다.
 
@@ -71,13 +63,9 @@ main 함수의 샘플입니다.
       return 0;
     }
 
-The Driver class' `Init` method will load a job configuration file provided by
-users as a command line argument (`-conf <job conf>`). It contains at least the
-cluster topology and returns the `jobConf` for users to update or fill in
-configurations of neural net, updater, etc. If users define subclasses of
-Layer, Updater, Worker and Param, they should register them through the driver.
-Finally, the job configuration is submitted to the driver which starts the
-training.
+Driver class' `Init` method 는 커맨드라인 인수 `-conf <job conf>` 에서 주어진 job configuration 파일을 읽습니다. 그 파일에는 cluster topology 정보가 기술 되어있고, 유저가 neural net, updater 등을 업데이트 혹은 설정 하기위한 `jobConf`를 리턴합니다.
+유저가 Layer, Updater, Worker, Param 등의 subclass를 정의하면, driver 에 등록을 해야합니다.
+트레이닝을 시작하기 위하여 job configuration 즉 `jobConf`를 driver.Train 에 넘겨줍니다.
 
 We will provide helper functions to make the configuration easier in the
 future, like [keras](https://github.com/fchollet/keras).
@@ -89,5 +77,4 @@ path of the *mysinga* and base job configuration to *./bin/singa-run.sh*.
 
     ./bin/singa-run.sh -conf <path to job conf> -exec <path to mysinga> [other arguments]
 
-The [RNN application](rnn.html) provides a full example of
-implementing the main function for training a specific RNN model.
+[RNN application](rnn.html) 에서 RNN 모델의 트레이닝을 위한 함수의 프로그램 예를 설명합니다.
