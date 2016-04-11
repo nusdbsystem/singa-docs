@@ -69,6 +69,48 @@ Its type is `kRMSProp`.
       }
     }
 
+#### AdaDeltaUpdater
+
+It inherits the base `Updater` to implements the
+[AdaDelta](http://arxiv.org/abs/1212.5701) updating algorithm.
+Its type is `kAdaDelta`.
+
+    updater {
+      type: kAdaDelta
+      adadelta_conf {
+       rho: float # [0,1]
+      }
+    }
+
+#### Adam
+
+It inherits the base `Updater` to implements the
+[Adam](http://arxiv.org/pdf/1412.6980.pdf) updating algorithm.
+Its type is `kAdam`.
+`beta1` and `beta2` is floats, 0 < `beta` < 1, generally close to 1.
+
+    updater {
+      type: kAdam
+      adam_conf {
+       beta1: float # [0,1]
+       beta2: float # [0,1]
+      }
+    }
+
+#### AdaMax
+
+It inherits the base `Updater` to implements the
+[AdaMax](http://arxiv.org/pdf/1412.6980.pdf) updating algorithm.
+Its type is `kAdamMax`.
+`beta1` and `beta2` is floats, 0 < `beta` < 1, generally close to 1.
+
+    updater {
+      type: kAdamMax
+      adammax_conf {
+       beta1: float # [0,1]
+       beta2: float # [0,1]
+      }
+    }
 
 ### Configuration of learning rate
 
