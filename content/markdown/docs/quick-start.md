@@ -6,10 +6,6 @@
 
 Please refer to the [installation](installation.html) page for guidance on installing SINGA.
 
-## Running in standalone mode
-
-Running SINGA in standalone mode is on the contrary of running it using cluster
-managers like [Mesos](http://mesos.apache.org/) or [YARN](http://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/YARN.html).
 
 ### Training on a single node
 
@@ -75,7 +71,7 @@ run as on different data partitions.
     neuralnet {
       layer {
         ...
-        sharddata_conf {
+        store_conf {
           random_skip: 5000
         }
       }

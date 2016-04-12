@@ -79,7 +79,7 @@ configurations for ConvNet.
 
 #### GPU cluster
 For distributed training over a (GPU) cluster, you just need to configure SINGA with
-`--enable-dist`, which compiles SINGA with zookeeper and ZeroMQ.
+`--enable-dist`, which would then compile SINGA with zookeeper and ZeroMQ.
 
 ## Implementation details
 
