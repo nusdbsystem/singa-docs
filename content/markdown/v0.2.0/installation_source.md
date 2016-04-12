@@ -10,14 +10,9 @@ The following dependent libraries are required:
 
   * glog version 0.3.3
 
-  * google-protobuf version 2.5 and 2.6
+  * google-protobuf version 2.6.0
 
   * openblas version >= 0.2.10
-
-
-Optional dependencies include:
-
-  * lmdb version 0.9.10
 
   * zeromq version >= 3.2
 
@@ -26,8 +21,12 @@ Optional dependencies include:
   * zookeeper version 3.4.6
 
 
+Optional dependencies include:
 
-You can install all dependencies (including optional dependent libraries) into $PREFIX folder by
+  * lmdb version 0.9.10
+
+
+You can install all dependencies into $PREFIX folder by
 
     # make sure you are in the thirdparty folder
     cd thirdparty
@@ -58,6 +57,10 @@ There are two ways to build SINGA,
         $ ./configure
         $ make
 
+  Note: It is an oversight that we forgot to delete the singa repo under [nusinga](https://github.com/orgs/nusinga)
+  account after we became Apache Incubator project -- the source
+  in that repo was not up to date, and we apologize for any inconvenience.
+
   * If you download a release package, please follow the instructions below,
 
         $ tar xvf singa-xxx
@@ -71,9 +74,16 @@ There are two ways to build SINGA,
 
         $ ./configure --enable-lmdb
 
-    More options can be found by
+<!---
+Zhongle: please update the code to use the follow command
 
-        $ ./configure --help
+    $ make test
+
+After compilation, you will find the binary file singatest. Just run it!
+More details about configure script can be found by running:
+
+		$ ./configure -h
+-->
 
 After compiling SINGA successfully, the *libsinga.so* and the executable file
 *singa* will be generated into *.libs/* folder.
@@ -81,6 +91,12 @@ After compiling SINGA successfully, the *libsinga.so* and the executable file
 If some dependent libraries are missing (or not detected), you can use the
 following script to download and install them:
 
+<!---
+to be updated after zhongle changes the code to use
+
+    ./install.sh libname \-\-prefix=
+
+-->
     # must goto thirdparty folder
     $ cd thirdparty
     $ ./install.sh LIB_NAME PREFIX
@@ -113,6 +129,12 @@ Here is a table showing the first arguments:
 *: Since `czmq` depends on `zeromq`, the script offers you one more argument to
 indicate `zeromq` location.
 The installation commands of `czmq` is:
+
+<!---
+to be updated to
+
+    $./install.sh czmq  \-\-prefix=/usr/local \-\-zeromq=/usr/local/zeromq
+-->
 
     $./install.sh czmq  /usr/local -f=/usr/local/zeromq
 
@@ -176,7 +198,7 @@ google.protobuf.internal when I try to import .py files.
 * Q6: While compiling SINGA and installing `glog` on mac OS X, I get fatal error
 `'ext/slist' file not found`
 
-  A6:We haven't tested SINGA thorough on Mac OS. This error may be fixed by :
+  A6:Please install `glog` individually and try :
 
       $ make CFLAGS='-stdlib=libstdc++' CXXFLAGS='stdlib=libstdc++'
 
@@ -228,11 +250,11 @@ google.protobuf.internal when I try to import .py files.
 * Q10: When I build glog, it reports that "src/logging_unittest.cc:83:20: error: ‘gflags’ is not a namespace-name"
 
   A10: It maybe that you have installed gflags with a different namespace such as "google". so glog can't find 'gflags' namespace.
-
+  
   Because it doesn't require gflags to build glog. So you can change the configure.ac file to ignore gflags.
 
   1. cd to glog src directory
   2. change line 125 of configure.ac  to "AC_CHECK_LIB(gflags, main, ac_cv_have_libgflags=0, ac_cv_have_libgflags=0)"
-  3. autoreconf
-
+  3. autoreconf 
+ 
   After this, you can build glog again.

@@ -73,8 +73,7 @@ The configuration for this layer is in `store_conf`,
     store_conf {
       backend: # "kvfile" or "textfile"
       path: # path to the data store
-      batchsize : 32
-      prefetching: true #default value is false
+      batchsize :
       ...
     }
 
@@ -291,13 +290,6 @@ Store, e.g., text file. The configuration of this layer should include the speci
 
 Neuron layers conduct feature transformations.
 
-#### ActivationLayer
-
-    type: kActivation
-    activation_conf {
-      type: {RELU, SIGMOID, TANH, STANH}
-    }
-
 ##### ConvolutionLayer
 
 [ConvolutionLayer](../api/classsinga_1_1ConvolutionLayer.html) conducts convolution transformation.
@@ -393,22 +385,6 @@ This scheme helps deep learning model away from over-fitting.
  For `WITHIN_CHANNEL`, it means the side length of the space region which will be summed up.
 
 
-
-### CuDNN layers
-
-CuDNN v3 and v4 are supported in SINGA, which include the following layers,
-
-* CudnnActivationLayer (activation functions are SIGMOID, TANH, RELU)
-* CudnnConvLayer
-* CudnnLRNLayer
-* CudnnPoolLayer
-* CudnnSoftmaxLayer
-
-These layers have the same configuration as the corresponding CPU layers.
-For CuDNN v4, the batch normalization layer is added, which is named as
-`CudnnBMLayer`.
-
-
 #### Loss Layers
 
 Loss layers measures the objective training loss.
@@ -487,15 +463,22 @@ implement a new Layer subclass.
 #### Members
 
     LayerProto layer_conf_;
-    vector<Blob<float>> datavec_, gradvec_;
+    Blob<float> data_, grad_;
     vector<AuxType> aux_data_;
 
 The base layer class keeps the user configuration in `layer_conf_`.
-`datavec_` stores the features associated with this layer.
+Almost all layers has $b$ (mini-batch size) feature vectors, which are stored
+in the `data_` [Blob](../api/classsinga_1_1Blob.html) (A Blob is a chunk of memory space, proposed in
+[Caffe](http://caffe.berkeleyvision.org/)).
 There are layers without feature vectors; instead, they share the data from
 source layers.
-The `gradvec_` is for storing the gradients of the
-objective loss w.r.t. the `datavec_`. The `aux_data_` stores the auxiliary data, e.g., image label (set `AuxType` to int).
+The `grad_` Blob is for storing the gradients of the
+objective loss w.r.t. the `data_` Blob. It is necessary in [BP algorithm](../api/classsinga_1_1BPWorker.html),
+hence we put it as a member of the base class. For [CD algorithm](../api/classsinga_1_1CDWorker.html), the `grad_`
+field is not used; instead, the layers for the RBM model may have a Blob for the positive
+phase feature and a Blob for the negative phase feature. For a recurrent layer
+in RNN, one row of the feature blob corresponds to the feature of one internal layer.
+The `aux_data_` stores the auxiliary data, e.g., image label (set `AuxType` to int).
 If images have variant number of labels, the AuxType can be defined to `vector<int>`.
 Currently, we hard code `AuxType` to int. It will be added as a template argument of Layer class later.
 
@@ -513,6 +496,17 @@ The `Setup` function reads user configuration, i.e. `conf`, and information
 from source layers, e.g., mini-batch size,  to set the
 shape of the `data_` (and `grad_`) field as well
 as some other layer specific fields.
+<!---
+If `npartitions` is larger than 1, then
+users need to reduce the sizes of `data_`, `grad_` Blobs or Param objects. For
+example, if the `partition_dim=0` and there is no source layer, e.g., this
+layer is a (bottom) data layer, then its `data_` and `grad_` Blob should have
+`b/npartitions` feature vectors; If the source layer is also partitioned on
+dimension 0, then this layer should have the same number of feature vectors as
+the source layer. More complex partition cases are discussed in
+[Neural net partitioning](neural-net.html#neural-net-partitioning). Typically, the
+Setup function just set the shapes of `data_` Blobs and Param objects.
+-->
 Memory will not be allocated until computation over the data structure happens.
 
 The `ComputeFeature` function evaluates the feature blob by transforming (e.g.

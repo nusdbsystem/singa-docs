@@ -4,7 +4,29 @@
 
 ## SINGA setup
 
-Please refer to the [installation](installation.html) page for guidance on installing SINGA.
+Please refer to the
+[installation](installation.html) page
+for guidance on installing SINGA.
+
+### Starting Zookeeper
+
+SINGA uses [zookeeper](https://zookeeper.apache.org/) to coordinate the
+training.  Please make sure the zookeeper service is started before running
+SINGA.
+
+If you installed the zookeeper using our thirdparty script, you can
+simply start it by:
+
+    #goto top level folder
+    cd  SINGA_ROOT
+    ./bin/zk-service.sh start
+
+(`./bin/zk-service.sh stop` stops the zookeeper).
+
+Otherwise, if you launched a zookeeper by yourself but not used the
+default port, please edit the `conf/singa.conf`:
+
+    zookeeper_host: "localhost:YOUR_PORT"
 
 ## Running in standalone mode
 
@@ -30,12 +52,13 @@ Download the dataset and create the data shards for training and testing.
     make download
     make create
 
-A training dataset and a test dataset are created respectively. An *image_mean.bin* file is also
+A training dataset and a test dataset are created under *cifar10-train-shard*
+and *cifar10-test-shard* folder respectively. An *image_mean.bin* file is also
 generated, which contains the feature mean of all images.
 
 Since all code used for training this CNN model is provided by SINGA as
 built-in implementation, there is no need to write any code. Instead, users just
-execute the running script by providing the job
+execute the running script (*../../bin/singa-run.sh*) by providing the job
 configuration file (*job.conf*). To code in SINGA, please refer to the
 [programming guide](programming-guide.html).
 
@@ -48,7 +71,25 @@ The training is started by running:
 
     # goto top level folder
     cd ../../
-    ./singa -conf examples/cifar10/job.conf
+    ./bin/singa-run.sh -conf examples/cifar10/job.conf
+
+
+You can list the current running jobs by,
+
+    ./bin/singa-console.sh list
+
+    JOB ID    |NUM PROCS
+    ----------|-----------
+    24        |1
+
+Jobs can be killed by,
+
+    ./bin/singa-console.sh kill JOB_ID
+
+
+Logs and job information are available in */tmp/singa-log* folder, which can be
+changed to other folders by setting `log-dir` in *conf/singa.conf*.
+
 
 #### Asynchronous parallel training
 
@@ -84,7 +125,7 @@ run as on different data partitions.
 
 The running command is:
 
-    ./singa -conf examples/cifar10/job.conf
+    ./bin/singa-run.sh -conf examples/cifar10/job.conf
 
 #### Synchronous parallel training
 
@@ -110,32 +151,9 @@ workers in a group. It is also possible to partition the layer (or neural net)
 using [other schemes](neural-net.html).
 All other settings are the same as running without partitioning
 
-    ./singa -conf examples/cifar10/job.conf
-
+    ./bin/singa-run.sh -conf examples/cifar10/job.conf
 
 ### Training in a cluster
-
-#### Starting Zookeeper
-
-SINGA uses [zookeeper](https://zookeeper.apache.org/) to coordinate the
-training, and uses ZeroMQ for transferring messages. After installing zookeeper
-and ZeroMQ, you need to configure SINGA with `--enable-dist` before compiling.
-Please make sure the zookeeper service is started before running SINGA.
-
-If you installed the zookeeper using our thirdparty script, you can
-simply start it by:
-
-    #goto top level folder
-    cd  SINGA_ROOT
-    ./bin/zk-service.sh start
-
-(`./bin/zk-service.sh stop` stops the zookeeper).
-
-Otherwise, if you launched a zookeeper by yourself but not used the
-default port, please edit the `conf/singa.conf`:
-
-    zookeeper_host: "localhost:YOUR_PORT"
-
 
 We can extend the above two training frameworks to a cluster by updating the
 cluster configuration with:
@@ -147,36 +165,21 @@ would be created in different processes (i.e., nodes). The *hostfile*
 must be provided under *SINGA_ROOT/conf/* specifying the nodes in the cluster,
 e.g.,
 
-    192.168.0.1
-    192.168.0.2
+    logbase-a01
+    logbase-a02
 
 And the zookeeper location must be configured correctly, e.g.,
 
     #conf/singa.conf
     zookeeper_host: "logbase-a01"
 
-The running command is :
+The running command is the same as for single node training:
 
     ./bin/singa-run.sh -conf examples/cifar10/job.conf
 
-You can list the current running jobs by,
+## Running with Mesos
 
-    ./bin/singa-console.sh list
-
-    JOB ID    |NUM PROCS
-    ----------|-----------
-    24        |2
-
-Jobs can be killed by,
-
-    ./bin/singa-console.sh kill JOB_ID
-
-
-Logs and job information are available in */tmp/singa-log* folder, which can be
-changed to other folders by setting `log-dir` in *conf/singa.conf*.
-
-### Training with GPUs
-Please refer to the [GPU page][gpu.html] for details on training using GPUs.
+*working*...
 
 ## Where to go next
 

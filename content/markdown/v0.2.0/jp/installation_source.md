@@ -1,23 +1,18 @@
-# Building SINGA from source
+# ソースからのビルド
 
 ---
 
-## Dependencies
+## Dependencies （依存性）
 
-SINGA is developed and tested on Linux platforms.
+SINGA は Linux プラットフォームで開発されました。
 
-The following dependent libraries are required:
+下記のライブラリを必要とします。ご確認ください。
 
   * glog version 0.3.3
 
-  * google-protobuf version 2.5 and 2.6
+  * google-protobuf version 2.6.0
 
   * openblas version >= 0.2.10
-
-
-Optional dependencies include:
-
-  * lmdb version 0.9.10
 
   * zeromq version >= 3.2
 
@@ -26,31 +21,33 @@ Optional dependencies include:
   * zookeeper version 3.4.6
 
 
+オプション
 
-You can install all dependencies (including optional dependent libraries) into $PREFIX folder by
+  * lmdb version 0.9.10
 
-    # make sure you are in the thirdparty folder
+
+すべての Dependencies をインストールするには
+
+    # thirdparty フォルダに移動
     cd thirdparty
     ./install.sh all $PREFIX
 
-If $PREFIX is not a system path (e.g., /usr/local/), please export the following
-variables to continue the building instructions,
+$PREFIX がシステムパス (例 /usr/local/) でない場合は、下記の変数を exportコマンドで設定してください。
 
     export LD_LIBRARY_PATH=$PREFIX/lib:$LD_LIBRARY_PATH
     export CPLUS_INCLUDE_PATH=$PREFIX/include:$CPLUS_INCLUDE_PATH
     export LIBRARY_PATH=$PREFIX/lib:$LIBRARY_PATH
     export PATH=$PREFIX/bin:$PATH
 
-More details on using this script is given below.
+インストールスクリプトの詳細は、このページの下にあります。
 
-## Building SINGA from source
+## ソースからのビルド
 
-SINGA is built using GNU autotools. GCC (version >= 4.8) is required.
-There are two ways to build SINGA,
+GNU autotools を使用します。まずは GCC (version >= 4.8) のバージョンを確認してください。
 
-  * If you want to use the latest code, please clone it from
-  [Github](https://github.com/apache/incubator-singa.git) and execute
-  the following commands,
+SINGA をビルドする２つの方法を用意しました。
+
+  * Git コマンドを使用して [Github](https://github.com/apache/incubator-singa.git) から最新のソースコード（レポジトリ）をクローンし、次のコマンドを実行します。
 
         $ git clone git@github.com:apache/incubator-singa.git
         $ cd incubator-singa
@@ -58,66 +55,81 @@ There are two ways to build SINGA,
         $ ./configure
         $ make
 
-  * If you download a release package, please follow the instructions below,
+  Note: [nusinga](https://github.com/orgs/nusinga) アカウントの singa repository は Apache Incubator project として使用していたものなので、最新ではありません。ご注意ください。
+
+  * Release パッケージをダウンロードし、次のコマンドを実行します。
 
         $ tar xvf singa-xxx
         $ cd singa-xxx
         $ ./configure
         $ make
 
-    Some features of SINGA depend on external libraries. These features can be
-    compiled with `--enable-<feature>`.
-    For example, to build SINGA with lmdb support, you can run:
+    ある機能は外部ライブラリに依存します。
+    それらの機能を利用するために、`--enable-<feature>` を付けてコンパイルしてください。
+    例えば、lmdb サポートを追加するには
 
         $ ./configure --enable-lmdb
 
-    More options can be found by
+<!---
+Zhongle: please update the code to use the follow command
 
-        $ ./configure --help
+    $ make test
 
-After compiling SINGA successfully, the *libsinga.so* and the executable file
-*singa* will be generated into *.libs/* folder.
+After compilation, you will find the binary file singatest. Just run it!
+More details about configure script can be found by running:
 
-If some dependent libraries are missing (or not detected), you can use the
-following script to download and install them:
+		$ ./configure -h
+-->
 
-    # must goto thirdparty folder
+うまくコンパイルが成功すると、*.libs/* フォルダ内に *libsinga.so* と実行ファイル *singa* が生成されます。
+
+特定の dependent ライブラリが見つからない場合、次のスクリプトを実行してください。
+<!---
+to be updated after zhongle changes the code to use
+
+    ./install.sh libname \-\-prefix=
+
+-->
+    # thirdparty フォルダに移動
     $ cd thirdparty
     $ ./install.sh LIB_NAME PREFIX
 
-If you do not specify the installation path, the library will be installed in
-the default folder specified by the software itself.  For example, if you want
-to install `zeromq` library in the default system folder, run it as
+インストールパスを指定しない場合、ライブラリは（ソフトウェアが指定した）デフォルトのフォルダにインストールされます。
+例えば、デフォルトのフォルダに `zeromq` ライブラリをインストールするには、次のコマンドを
 
     $ ./install.sh zeromq
 
-Or, if you want to install it into another folder,
+別のフォルダ（e.g., PREFIX）にインストールするには、次のコマンドを
 
     $ ./install.sh zeromq PREFIX
 
-You can also install all dependencies in */usr/local* directory:
+*/usr/local*　フォルダにすべての Dependencies をインストールするには、次のコマンドを
 
     $ ./install.sh all /usr/local
 
-Here is a table showing the first arguments:
+ライブラリ名（LIB_NAME）は以下のとおりです。
 
-    LIB_NAME  LIBRARIE
-    czmq*                 czmq lib
-    glog                  glog lib
-    lmdb                  lmdb lib
-    OpenBLAS              OpenBLAS lib
-    protobuf              Google protobuf
-    zeromq                zeromq lib
-    zookeeper             Apache zookeeper
+    LIB_NAME          Library
+    czmq（注）       　czmq lib
+    glog              glog lib
+    lmdb              lmdb lib
+    OpenBLAS          OpenBLAS lib
+    protobuf          Google protobuf
+    zeromq            zeromq lib
+    zookeeper         Apache zookeeper
 
-*: Since `czmq` depends on `zeromq`, the script offers you one more argument to
-indicate `zeromq` location.
-The installation commands of `czmq` is:
+(注) `czmq` をインストールする時、`zeromq` のパスを -f オプションで指定する必要があります。
+コマンドは次のとおりです。
+
+<!---
+to be updated to
+
+    $./install.sh czmq  \-\-prefix=/usr/local \-\-zeromq=/usr/local/zeromq
+-->
 
     $./install.sh czmq  /usr/local -f=/usr/local/zeromq
 
-After the execution, `czmq` will be installed in */usr/local*. The last path
-specifies the path to zeromq.
+結果、*/usr/local* フォルダに `czmq` がインストールされます。
 
 ### FAQ
 * Q1:I get error `./configure --> cannot find blas_segmm() function` even I
@@ -176,7 +188,7 @@ google.protobuf.internal when I try to import .py files.
 * Q6: While compiling SINGA and installing `glog` on mac OS X, I get fatal error
 `'ext/slist' file not found`
 
-  A6:We haven't tested SINGA thorough on Mac OS. This error may be fixed by :
+  A6:Please install `glog` individually and try :
 
       $ make CFLAGS='-stdlib=libstdc++' CXXFLAGS='stdlib=libstdc++'
 
@@ -225,14 +237,3 @@ google.protobuf.internal when I try to import .py files.
   then you just set your environment variable as
 
       $ export LD_LIBRARY_PATH=/usr/local/lib64:$LD_LIBRARY_PATH
-* Q10: When I build glog, it reports that "src/logging_unittest.cc:83:20: error: ‘gflags’ is not a namespace-name"
-
-  A10: It maybe that you have installed gflags with a different namespace such as "google". so glog can't find 'gflags' namespace.
-
-  Because it doesn't require gflags to build glog. So you can change the configure.ac file to ignore gflags.
-
-  1. cd to glog src directory
-  2. change line 125 of configure.ac  to "AC_CHECK_LIB(gflags, main, ac_cv_have_libgflags=0, ac_cv_have_libgflags=0)"
-  3. autoreconf
-
-  After this, you can build glog again.

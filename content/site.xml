@@ -65,12 +65,13 @@
     </head>
 
     <menu name="Documentaion">
-      <item name = "v0.2.0" href="docs/index.html" collapse="true" >
+      <item name = "v0.3.0" href="docs/index.html" collapse="true" >
         <item name="English" href="docs/index.html"/>
         <item name="中文" href="docs/zh/index.html"/>
         <item name="日本語" href="docs/jp/index.html"/>
         <item name="한국어" href="docs/kr/index.html"/>
       </item>
+      <item name = "v0.2.0" href="v0.2.0/index.html"/>
       <item name = "v0.1.0" href="v0.1.0/index.html"/>
     </menu>
 

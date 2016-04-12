@@ -36,8 +36,6 @@ the GPU you want to use. The simplest configuration is
     gpu: 0
     ...
 
-
-#### Single node with multiple GPUs
 This configuration will run the worker on GPU 0. If you want to launch multiple
 workers, each on a separate GPU, you can configure it as
 
@@ -76,10 +74,6 @@ implemented using CUDNN library. To train a ConvNet on GPU, you configure the la
 
 The [cifar10 example](cnn.html) and [Alexnet example](alexnet.html) have complete
 configurations for ConvNet.
-
-#### GPU cluster
-For distributed training over a (GPU) cluster, you just need to configure SINGA with
-`--enable-dist`, which compiles SINGA with zookeeper and ZeroMQ.
 
 ## Implementation details
 
