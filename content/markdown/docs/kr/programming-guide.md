@@ -23,8 +23,8 @@ SINGA 에서 준비된 main 함수를 써서 쉽게 트레이닝을 시작할수
 
     ./bin/singa-run.sh -conf <path to job conf> [-resume]
 
-`-resume` 는 트레이닝을 저번 [checkpoint](checkpoint.html) 부터 다시 계속할때 쓰는 인수 입니다.
-[MLP](mlp.html) 와 [CNN](cnn.html) 샘플들은 built-in 컴포넌트를 쓰고 있습니다.
+`-resume` 는 저번 [checkpoint](checkpoint.html) 부터 다시 트레이닝을 계속할때 쓰는 인수 입니다.
+[MLP](mlp.html) 와 [CNN](cnn.html) 샘플들은 built-in 컴포넌트를 이용하고 있습니다.
 Please read the corresponding pages for their job configuration files. The subsequent pages will illustrate the details on each component of the configuration.
 
 ## Advanced 유저 가이드
@@ -67,13 +67,10 @@ Driver class' `Init` method 는 커맨드라인 인수 `-conf <job conf>` 에서
 유저가 Layer, Updater, Worker, Param 등의 subclass를 정의하면, driver 에 등록을 해야합니다.
 트레이닝을 시작하기 위하여 job configuration 즉 `jobConf`를 driver.Train 에 넘겨줍니다.
 
-We will provide helper functions to make the configuration easier in the
-future, like [keras](https://github.com/fchollet/keras).
+<!--We will provide helper functions to make the configuration easier in the
+future, like [keras](https://github.com/fchollet/keras).-->
 
-Users need to compile and link their code (e.g., layer implementations and the main
-file) with SINGA library (*.libs/libsinga.so*) to generate an
-executable file, e.g., with name *mysinga*.  To launch the program, users just pass the
-path of the *mysinga* and base job configuration to *./bin/singa-run.sh*.
+유저코드를 compile 하고 SINGA library (*.libs/libsinga.so*) 와 링크시켜 실행파일, e.g., *mysinga*, 을 생성합니다. 프로그램은 다음과 같이 실행합니다.
 
     ./bin/singa-run.sh -conf <path to job conf> -exec <path to mysinga> [other arguments]
 
