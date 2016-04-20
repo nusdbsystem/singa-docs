@@ -22,11 +22,12 @@
 |         |               |2.6. Visualization of neural net and debug information |done|
 |         | Binding        |2.7. Python binding for major components |done|
 |         | GPU            |2.8. Single node with multiple GPUs |done|
-|0.3 Mar 2016 | GPU | 3.1 Multiple nodes, each with multiple GPUs||
-|        |     | 3.2 Heterogeneous training using both GPU and CPU [CcT](http://arxiv.org/abs/1504.04343)||
-|         | Tools| 3.3 Deep learning as a service ||
-|         | Binding| 3.4 Enhance Python binding for training||
-|         |  | 3.5 Add R binding||
-|         | Applications | 3.6 Image classification, product search, etc.||
-|         | Optimization | 3.7  ||
+|0.3 April 2016 | GPU | 3.1 Multiple nodes, each with multiple GPUs|done|
+|               |     | 3.2 Heterogeneous training using both GPU and CPU [CcT](http://arxiv.org/abs/1504.04343)|done|
+|               |     | 3.3 Support cuDNN v4 | done|
+|               | Installation| 3.4 Remove dependency on ZeroMQ, CZMQ, Zookeeper for single node training|done|
+|               | Updater| 3.5 Add new SGD updaters including Adam, AdamMax and AdaDelta|done|
+|               | Binding| 3.6 Enhance Python binding for training|done|
+|0.4 July 2016  | Rafiki | 4.1 Deep learning as a service| |
+|               |        | 4.2 Product search using Rafiki| |
 
