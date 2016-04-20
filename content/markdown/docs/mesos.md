@@ -32,6 +32,9 @@ To check if the setup has been successful, check that HDFS namenode has register
 hadoop dfsadmin -report
 ````
 
+####Important If the Docker version is 1.9 or newer, make sure [name resolution is set up
+properly](docker.html#launch_pseudo) 
+
 #### Mesos logs
 Mesos logs are stored at `/opt/lt-mesos-master.INFO` on `node0` and `/opt/lt-mesos-slave.INFO` at other nodes.
 

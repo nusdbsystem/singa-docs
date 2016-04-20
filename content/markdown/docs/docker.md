@@ -3,11 +3,12 @@
 This guide explains how to set up a development environment for SINGA using Docker. It requires only Docker to be installed. The resulting image contains the complete working environment for SINGA. The image can then be used to set up cluster environment over one or multiple physical nodes.  
 
 1. [Build SINGA base](#build_base)
-2. [Build SINGA with Mesos and Hadoop](#build_mesos)
-3. [Pre-built images](#pre_built)
-4. [Launch and stop SINGA (stand alone mode)](#launch_stand_alone)
-5. [Launch pseudo-distributed SINGA on one node](#launch_pseudo)
-6. [Launch fully distributed SINGA on multiple nodes](#launch_distributed)
+2. [Build GPU-enabled SINGA](#build_gpu)
+3. [Build SINGA with Mesos and Hadoop](#build_mesos)
+4. [Pre-built images](#pre_built)
+5. [Launch and stop SINGA (stand alone mode)](#launch_stand_alone)
+6. [Launch pseudo-distributed SINGA on one node](#launch_pseudo)
+7. [Launch fully distributed SINGA on multiple nodes](#launch_distributed)
 
 ---
 
@@ -15,11 +16,11 @@ This guide explains how to set up a development environment for SINGA using Dock
 #### Build SINGA base image
  
 ````
-$ cd tool/docker/singa
-$ sudo docker build -t singa/base . 
+$ cd $SINGA_HOME/..
+$ sudo docker build -t singa/base -f incubator-singa/tool/docker/singa/Dockerfile . 
 $ sudo docker images
 REPOSITORY             TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
-singa/base             latest              XXXX                XXX                 2.01 GB
+singa/base             latest              XXXX                XXX                 XXX GB
 ````
 
 The result is the image containing a built version of SINGA. 
@@ -30,14 +31,27 @@ The result is the image containing a built version of SINGA.
 
 ---
 
+<a name="build_gpu"></a>
+#### Build SINGA with GPU support 
+ 
+````
+$ cd $SINGA_HOME/..
+$ sudo docker build -t singa/gpu -f incubator-singa/tool/docker/singa/Dockerfile_gpu . 
+$ sudo docker images
+REPOSITORY             TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+singa/gpu             latest              XXXX                XXX                 XXX GB
+````
+
+---
+
 <a name="build_mesos"></a>
 #### Build SINGA with Mesos and Hadoop
 ````
-$ cd tool/docker/mesos
-$ sudo docker build -t singa/mesos .
+$ cd $SINGA_HOME/.. 
+$ sudo docker build -t singa/mesos -f incubator-singa/tool/docker/mesos/Dockerfile .
 $ sudo docker images
 REPOSITORY             TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
-singa/mesos             latest              XXXX                XXX                 4.935 GB
+singa/mesos             latest              XXXX                XXX                 XXX GB
 ````
    ![singa/mesos](http://www.comp.nus.edu.sg/~dinhtta/files/images_mesos.png#1)
    
@@ -83,6 +97,17 @@ $ sudo docker exec -it XYZ /bin/bash
 
 Inside the launched container, the SINGA source directory can be found at `/root/incubator-singa`. 
 
+**Launching GPU-enabled container**
+First, make sure that the host GPUs are up and running. The list of `NVIDIA` devices should be listed at
+`/dev/nvidiaYYY`.
+
+Next, start a new container, passing it all the devices
+
+````
+$ sudo docker run -dt --device /dev/nvidiaYYY --device /dev/nvidiaYYY ... --name XYZ singa/gpu /usr/bin/supervisord
+$ sudo docker exec -it XYZ /bin/bash
+````
+
 **Stopping the container**
 
 ````
@@ -124,7 +149,22 @@ guide](mesos.html)
 for details of how to start training with multiple SINGA instances. 
 
 **Important:** the container that assumes the role of Hadoop's namenode (and often Mesos's and Zookeeper's mater node as well) **must** be named `node0`. Otherwise, the user must log in to individual containers and change the Hadoop configuration separately. 
- 
+
+**Notes on Docker version >=1.9** Newer version of Docker adopted a built-in DNS server at the deamon. As a consequence,
+name resolution inside containers now **cannot** depend on the automatically updated `/etc/hosts` files as in version
+1.8 and earlier. Here we recommend two ways to make pseudo-distributed and distributed SINGA containers work as before
+
+1. Downgrade to docker version 1.8 and earlier
+
+         $ sudo apt-get install docker-engine=1.8.3-0~trusty
+
+2. Manually log in to each running container, by `sudo exec -it <name> /bin/bash`, and edit the `/etc/hosts` with the
+assigned IP addresses of all other running containers. 
+
+         node0 <ip0>
+         node1 <ip1>
+         ...
+
 ---
 
 <a name="launch_distributed"></a>
